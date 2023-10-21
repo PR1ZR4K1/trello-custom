@@ -1,7 +1,8 @@
 import { PlusCircleIcon } from '@heroicons/react/24/solid'
 import React from 'react'
-import { Draggable, Droppable } from 'react-beautiful-dnd'
+import { Draggable, Droppable } from '@hello-pangea/dnd'
 import TodoCard from './TodoCard'
+import { useModalStore } from '@/store/ModalStore'
 
 type Props = {
     id: TypedColumn,
@@ -18,6 +19,9 @@ const idToColomnText: {
 }
 
 function Column({id, todos, index}: Props) {
+  
+  const openModal = useModalStore((state) => state.openModal);
+
   return (
     <Draggable draggableId={id} index={index}>
         {(provided) => (
@@ -27,7 +31,7 @@ function Column({id, todos, index}: Props) {
               ref={provided.innerRef}
             >
                 {/* render internal droppable section for todos in columns */}
-                <Droppable droppableId={`column-${index}`} type="card">
+                <Droppable droppableId={index.toString()} type="card">
                    {(provided, snapshot) => (
                         <div
                           {...provided.droppableProps}
@@ -49,7 +53,7 @@ function Column({id, todos, index}: Props) {
                                 {todos.map((todo, index) => (
                                     <Draggable
                                         key={todo.id}
-                                        draggableId={`todo-${todo.id.toString()}`}
+                                        draggableId={todo.id.toString()}
                                         index={index}
                                     >
                                         {(provided) => (
@@ -67,7 +71,7 @@ function Column({id, todos, index}: Props) {
                                 {provided.placeholder}
                                 <div className='flex items-end justify-end p-2'>
                                     <button className='text-green-500 hover:text-green-600'>
-                                        <PlusCircleIcon className='h-10 w-10' />
+                                        <PlusCircleIcon className='h-10 w-10' onClick={openModal}/>
                                     </button>
                                 </div>
                             </div>

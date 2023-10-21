@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import Modal from '@/components/Modal'
 
 export const metadata: Metadata = {
   title: 'My Todos for the day!',
@@ -13,7 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body >{children}</body>
+      <body className=' bg-gray-400/30'>
+        {children}
+        <Modal />
+      </body>
     </html>
   )
 }

@@ -1,6 +1,6 @@
 import { XCircleIcon } from '@heroicons/react/24/solid';
 import React from 'react'
-import { DraggableProvidedDragHandleProps, DraggableProvidedDraggableProps } from 'react-beautiful-dnd';
+import { DraggableProvidedDragHandleProps, DraggableProvidedDraggableProps } from '@hello-pangea/dnd';
 
 type Props = {
     todo: Todo;

@@ -1,3 +1,5 @@
+"use server";
+
 import { supabase } from "@/supabase"
 
 export const getTodosGroupedByColumn = async () => {
@@ -17,7 +19,7 @@ export const getTodosGroupedByColumn = async () => {
             });
         }
 
-        acc.get(todo.status)!.todos.push({
+        acc.get(todo.status).todos.push({
             id: todo.id,
             created_at:  todo.created_at,
             title: todo.title,
